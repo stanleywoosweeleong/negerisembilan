@@ -24,7 +24,7 @@ app. It works offline after the first visit (service-worker cached).
 
 ## Seeded locations
 
-On first launch the app seeds these four farms. They are auto-favourited and
+On first launch the app seeds these five farms. They are auto-favourited and
 can be renamed, edited, or deleted freely afterwards. Add as many more farms
 as you like from inside the app.
 
@@ -32,6 +32,7 @@ as you like from inside the app.
 |---|---|---|
 | Mantin Tmn Permai Jaya | 文丁 中华华文小学 | 2.81778, 101.89250 |
 | Mantin Andalas GIO GIO | 文丁 湖滨花园 | 2.82639, 101.88028 |
+| MANTIN DALAM | 文丁达南 | 2.806111, 101.887500 |
 | Spg. Durian (Kg. Mentaus) 1 | 新邦榴梿 Pitt-猫王 | 3.12000, 102.21972 |
 | Spg. Durian (Kg. Mentaus) 2 | 新邦榴梿 SAM | 3.11778, 102.21944 |
 

@@ -1890,14 +1890,14 @@
         // On the VERY FIRST launch this seeds:
         //   - the company display name (so the app shows it with no
         //     onboarding prompt — but it stays editable via Edit Name)
-        //   - 4 company farm(s) into customLocations
+        //   - 5 company farm(s) into customLocations
         // After that the user has full control: rename, edit, delete
         // (soft + permanent), add new farms, receive shared locations —
         // exactly like the generic build. The seed never runs again
         // unless SEED_VERSION is bumped in a future build.
         // ============================================================
         (function seedCompanyLocations() {
-            var SEED_VERSION = '1';
+            var SEED_VERSION = '2';
             var SEED_FLAG_KEY = 'negerisembilan__wnext_company_seed_version';
             var CUSTOM_KEY = 'negerisembilan__wnext_v41_custom_store';
             var FAV_KEY = 'negerisembilan__wnext_v41_favs_store';
@@ -1919,6 +1919,7 @@
                 var seedLocs = [
                     {"id": "c_ns-mantin-permai-jaya",   "en": "Mantin Tmn Permai Jaya",          "zh": "文丁 中华华文小学", "lat": 2.81778, "lng": 101.89250, "t": 0, "p": 0, "em": false},
                     {"id": "c_ns-mantin-andalas-giogio", "en": "Mantin Andalas GIO GIO",          "zh": "文丁 湖滨花园",     "lat": 2.82639, "lng": 101.88028, "t": 0, "p": 0, "em": false},
+                    {"id": "c_ns-mantin-dalam",          "en": "MANTIN DALAM",                   "zh": "文丁达南",         "lat": 2.806111, "lng": 101.887500, "t": 0, "p": 0, "em": false},
                     {"id": "c_ns-spg-durian-mentaus-1",  "en": "Spg. Durian (Kg. Mentaus) 1",     "zh": "新邦榴梿 Pitt-猫王", "lat": 3.12000, "lng": 102.21972, "t": 0, "p": 0, "em": false},
                     {"id": "c_ns-spg-durian-mentaus-2",  "en": "Spg. Durian (Kg. Mentaus) 2",     "zh": "新邦榴梿 SAM",      "lat": 3.11778, "lng": 102.21944, "t": 0, "p": 0, "em": false}
                 ];
@@ -1954,6 +1955,7 @@
                 var seedIds = [
                     "c_ns-mantin-permai-jaya",
                     "c_ns-mantin-andalas-giogio",
+                    "c_ns-mantin-dalam",
                     "c_ns-spg-durian-mentaus-1",
                     "c_ns-spg-durian-mentaus-2"
                 ];
