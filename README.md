@@ -24,7 +24,7 @@ app. It works offline after the first visit (service-worker cached).
 
 ## Seeded locations
 
-On first launch the app seeds these five farms. They are auto-favourited and
+On first launch the app seeds these six farms. They are auto-favourited and
 can be renamed, edited, or deleted freely afterwards. Add as many more farms
 as you like from inside the app.
 
@@ -35,6 +35,7 @@ as you like from inside the app.
 | MANTIN DALAM | 文丁达南 | 2.806111, 101.887500 |
 | Spg. Durian (Kg. Mentaus) 1 | 新邦榴梿 Pitt-猫王 | 3.12000, 102.21972 |
 | Spg. Durian (Kg. Mentaus) 2 | 新邦榴梿 SAM | 3.11778, 102.21944 |
+| Titi | 知知港 | 2.81670, 102.06670 |
 
 The app also seeds a default user display name (**森美兰**, ASCII slug **NS9**),
 which stays editable via **Edit Name** in the app.
@@ -96,7 +97,7 @@ The service worker caches the app shell. When you push changes, bump the
 their next visit. The current value is:
 
 ```
-wnext-negerisembilan-202605230811
+wnext-negerisembilan-202605250754
 ```
 
 ---
