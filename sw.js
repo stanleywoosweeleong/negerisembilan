@@ -14,7 +14,7 @@
 // CACHE_VERSION on each release
 // ============================================================
 
-const CACHE_VERSION = 'wnext-negerisembilan-202606032020';
+const CACHE_VERSION = 'wnext-negerisembilan-202606041157';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const WEATHER_CACHE = `${CACHE_VERSION}-weather`;
