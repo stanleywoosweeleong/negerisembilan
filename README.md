@@ -150,7 +150,7 @@ The service worker caches the app shell. When you push changes, bump the
 their next visit. The current value is:
 
 ```
-wnext-negerisembilan-202606062223
+wnext-negerisembilan-202606090230
 ```
 
 ---
