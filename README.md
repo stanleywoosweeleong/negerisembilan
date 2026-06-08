@@ -75,7 +75,7 @@ app. It works offline after the first visit (service-worker cached).
 
 ## Seeded locations
 
-On first launch the app seeds the six farms below. They are auto-favourited and
+On first launch the app seeds the seven farms below. They are auto-favourited and
 can be renamed, edited, or deleted freely afterwards. Add as many more farms as
 you like from inside the app. Each seeded farm carries a default crop
 (**durian**) and a terrain zone, both editable in the app.
@@ -88,6 +88,7 @@ you like from inside the app. Each seeded farm carries a default crop
 | Spg. Durian (Kg. Mentaus) 1 | 新邦榴梿 Pitt-猫王 | 3.12000, 102.21972 | open plain |
 | Spg. Durian (Kg. Mentaus) 2 | 新邦榴梿 SAM | 3.11778, 102.21944 | open plain |
 | Titi | 知知港 | 2.81670, 102.06670 | sheltered basin |
+| Rembau | 林茂 | 2.546112, 102.091880 | sheltered basin |
 
 The terrain zone (riverine / sheltered basin / open plain / coastal) only
 adjusts the disease-risk weighting. The zones above are sensible defaults from
@@ -96,8 +97,8 @@ the farm locations and can be refined per farm in the app.
 The app also seeds a default user display name (**森美兰**, ASCII slug **NS9**),
 which stays editable via **Edit Name** in the app.
 
-This build carries the seed version **`ns-arch1`** (the lowland-architecture
-seed), which re-applies the six farms with their crop/zone tags. Existing
+This build carries the seed version **`ns-arch2`** (the lowland-architecture
+seed), which re-applies the seven farms with their crop/zone tags. Existing
 installs pick this up automatically on their next visit — no need to clear data.
 Any farm a user renamed, moved, or customised themselves is left untouched.
 
@@ -150,7 +151,7 @@ The service worker caches the app shell. When you push changes, bump the
 their next visit. The current value is:
 
 ```
-wnext-negerisembilan-202606090230
+wnext-negerisembilan-202606091201
 ```
 
 ---
