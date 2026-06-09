@@ -75,7 +75,7 @@ app. It works offline after the first visit (service-worker cached).
 
 ## Seeded locations
 
-On first launch the app seeds the seven farms below. They are auto-favourited and
+On first launch the app seeds the six farms below. They are auto-favourited and
 can be renamed, edited, or deleted freely afterwards. Add as many more farms as
 you like from inside the app. Each seeded farm carries a default crop
 (**durian**) and a terrain zone, both editable in the app.
@@ -83,7 +83,6 @@ you like from inside the app. Each seeded farm carries a default crop
 | English | 中文 | Coordinates | Zone |
 |---|---|---|---|
 | Mantin Tmn Permai Jaya | 文丁 中华华文小学 | 2.81778, 101.89250 | open plain |
-| Mantin Andalas GIO GIO | 文丁 湖滨花园 | 2.82639, 101.88028 | open plain |
 | MANTIN DALAM | 文丁达南 | 2.806111, 101.887500 | sheltered basin |
 | Spg. Durian (Kg. Mentaus) 1 | 新邦榴梿 Pitt-猫王 | 3.12000, 102.21972 | open plain |
 | Spg. Durian (Kg. Mentaus) 2 | 新邦榴梿 SAM | 3.11778, 102.21944 | open plain |
@@ -97,10 +96,12 @@ the farm locations and can be refined per farm in the app.
 The app also seeds a default user display name (**森美兰**, ASCII slug **NS9**),
 which stays editable via **Edit Name** in the app.
 
-This build carries the seed version **`ns-arch2`** (the lowland-architecture
-seed), which re-applies the seven farms with their crop/zone tags. Existing
-installs pick this up automatically on their next visit — no need to clear data.
-Any farm a user renamed, moved, or customised themselves is left untouched.
+This build carries the seed version **`ns-arch3`**, which drops the retired
+farm *Mantin Andalas GIO GIO* and re-applies the six remaining farms with their
+crop/zone tags. Existing installs pick this up automatically on their next
+visit — no need to clear data. Any farm a user renamed, moved, or customised
+themselves is left untouched (including Mantin Andalas if a user had renamed it
+to claim it as their own — in that case it is preserved with the user's name).
 
 ---
 
@@ -151,7 +152,7 @@ The service worker caches the app shell. When you push changes, bump the
 their next visit. The current value is:
 
 ```
-wnext-negerisembilan-202606091201
+wnext-negerisembilan-202606091400
 ```
 
 ---

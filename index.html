@@ -3457,7 +3457,7 @@
         // unless SEED_VERSION is bumped in a future build.
         // ============================================================
         (function seedCompanyLocations() {
-            var SEED_VERSION = 'ns-arch2';
+            var SEED_VERSION = 'ns-arch3';
             var SEED_FLAG_KEY = 'negerisembilan__wnext_company_seed_version';
             var CUSTOM_KEY = 'negerisembilan__wnext_v41_custom_store';
             var FAV_KEY = 'negerisembilan__wnext_v41_favs_store';
@@ -3476,7 +3476,7 @@
                     localStorage.setItem(NAME_KEY, "森美兰");
                     localStorage.setItem(NAME_ASCII_KEY, "NS9");
                 }
-                var seedLocs = [{"id": "c_ns-mantin-permai-jaya", "en": "Mantin Tmn Permai Jaya", "zh": "文丁 中华华文小学", "lat": 2.81778, "lng": 101.8925, "t": 0, "p": 0, "em": false, "elev": 90, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-mantin-andalas-giogio", "en": "Mantin Andalas GIO GIO", "zh": "文丁 湖滨花园", "lat": 2.82639, "lng": 101.88028, "t": 0, "p": 0, "em": false, "elev": 95, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-mantin-dalam", "en": "MANTIN DALAM", "zh": "文丁达南", "lat": 2.806111, "lng": 101.8875, "t": 0, "p": 0, "em": false, "elev": 100, "zone": "lowvalley", "crop": "durian"}, {"id": "c_ns-spg-durian-mentaus-1", "en": "Spg. Durian (Kg. Mentaus) 1", "zh": "新邦榴梿 Pitt-猫王", "lat": 3.12, "lng": 102.21972, "t": 0, "p": 0, "em": false, "elev": 80, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-spg-durian-mentaus-2", "en": "Spg. Durian (Kg. Mentaus) 2", "zh": "新邦榴梿 SAM", "lat": 3.11778, "lng": 102.21944, "t": 0, "p": 0, "em": false, "elev": 80, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-titi", "en": "Titi", "zh": "知知港", "lat": 2.8167, "lng": 102.0667, "t": 0, "p": 0, "em": false, "elev": 110, "zone": "lowvalley", "crop": "durian"}, {"id": "c_ns-rembau", "en": "Rembau", "zh": "林茂", "lat": 2.546112, "lng": 102.09188, "t": 0, "p": 0, "em": false, "elev": 60, "zone": "lowvalley", "crop": "durian"}];
+                var seedLocs = [{"id": "c_ns-mantin-permai-jaya", "en": "Mantin Tmn Permai Jaya", "zh": "文丁 中华华文小学", "lat": 2.81778, "lng": 101.8925, "t": 0, "p": 0, "em": false, "elev": 90, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-mantin-dalam", "en": "MANTIN DALAM", "zh": "文丁达南", "lat": 2.806111, "lng": 101.8875, "t": 0, "p": 0, "em": false, "elev": 100, "zone": "lowvalley", "crop": "durian"}, {"id": "c_ns-spg-durian-mentaus-1", "en": "Spg. Durian (Kg. Mentaus) 1", "zh": "新邦榴梿 Pitt-猫王", "lat": 3.12, "lng": 102.21972, "t": 0, "p": 0, "em": false, "elev": 80, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-spg-durian-mentaus-2", "en": "Spg. Durian (Kg. Mentaus) 2", "zh": "新邦榴梿 SAM", "lat": 3.11778, "lng": 102.21944, "t": 0, "p": 0, "em": false, "elev": 80, "zone": "openplain", "crop": "durian"}, {"id": "c_ns-titi", "en": "Titi", "zh": "知知港", "lat": 2.8167, "lng": 102.0667, "t": 0, "p": 0, "em": false, "elev": 110, "zone": "lowvalley", "crop": "durian"}, {"id": "c_ns-rembau", "en": "Rembau", "zh": "林茂", "lat": 2.546112, "lng": 102.09188, "t": 0, "p": 0, "em": false, "elev": 60, "zone": "lowvalley", "crop": "durian"}];
                 // Merge into whatever is already there (e.g. a deep-link
                 // location the user received before first cold start).
                 var existing = [];
@@ -3490,19 +3490,58 @@
                 seedLocs.forEach(function (l) {
                     if (!haveIds[l.id]) existing.push(l);
                 });
-                // --- One-time name correction (ch-2): Kampung Taman Sedia's
-                // Chinese name was 塔曼斯迪亚村, corrected to 草莓农场. Only update an
-                // EXISTING seeded entry that still carries the old name AND that the
-                // user hasn't renamed themselves (renames live in RENAME_KEY), so we
-                // never clobber a user's own edit.
+                // --- One-time removal migration (ns-arch3) -------------------
+                // Mantin Andalas GIO GIO (id c_ns-mantin-andalas-giogio) was
+                // seeded in ns-arch1 / ns-arch2 but is no longer a curated farm.
+                // Remove it from the custom store and the favourites — but ONLY
+                // when the entry still carries its original auto-seeded names,
+                // so any user who renamed it (i.e. claimed it as their own) keeps
+                // their farm untouched. Also clear its rename-store entry if any.
                 try {
+                    var DROP_ID = 'c_ns-mantin-andalas-giogio';
+                    var ORIG_EN = 'Mantin Andalas GIO GIO';
+                    var ORIG_ZH = '文丁 湖滨花园';
                     var renameRaw = localStorage.getItem(RENAME_KEY);
                     var renameMap = renameRaw ? (JSON.parse(renameRaw) || {}) : {};
-                    // (No Cameron-era one-time name/removal migrations in the lowland
-                    // Raub architecture build — fresh seed rb-arch1. Block kept as a
-                    // best-effort no-op so future renames can hook in here.)
-                    void renameMap;
-                } catch (e) { /* migration best-effort */ }
+                    var renamedByUser = renameMap && renameMap[DROP_ID] &&
+                        (renameMap[DROP_ID].en !== ORIG_EN || renameMap[DROP_ID].zh !== ORIG_ZH);
+                    var dropIt = false;
+                    var idx = -1;
+                    for (var i = 0; i < existing.length; i++) {
+                        if (existing[i] && existing[i].id === DROP_ID) { idx = i; break; }
+                    }
+                    if (idx !== -1) {
+                        var entry = existing[idx];
+                        // Only drop if BOTH the rename store and the in-place entry
+                        // still match the auto-seeded names — a fully untouched seed.
+                        if (!renamedByUser && entry.en === ORIG_EN && entry.zh === ORIG_ZH) {
+                            existing.splice(idx, 1);
+                            // Also drop the rename-store entry if it exists (auto-seeded copy)
+                            if (renameMap[DROP_ID]) {
+                                delete renameMap[DROP_ID];
+                                localStorage.setItem(RENAME_KEY, JSON.stringify(renameMap));
+                            }
+                            dropIt = true;
+                        }
+                    }
+                    // Drop from favourites only if we actually removed the farm
+                    // (preserves favourite status for any user who kept/renamed it).
+                    if (dropIt) {
+                        try {
+                            var rawF0 = localStorage.getItem(FAV_KEY);
+                            var favs0 = rawF0 ? (JSON.parse(rawF0) || []) : [];
+                            if (Array.isArray(favs0)) {
+                                var fi = favs0.indexOf(DROP_ID);
+                                if (fi !== -1) {
+                                    favs0.splice(fi, 1);
+                                    localStorage.setItem(FAV_KEY, JSON.stringify(favs0));
+                                }
+                            }
+                        } catch (e) { /* fav cleanup best-effort */ }
+                        console.log('[company-seed] dropped retired farm', DROP_ID);
+                    }
+                } catch (e) { console.warn('[company-seed] removal migration skipped', e); }
+                // -------------------------------------------------------------
                 localStorage.setItem(CUSTOM_KEY, JSON.stringify(existing));
                 // --- Lowland Raub: seed per-location default crop ------------
                 // Each seeded farm carries a `crop` hint (durian by default —
