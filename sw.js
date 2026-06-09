@@ -45,7 +45,7 @@
 // / Dense fog in the morning / Kabus tebal waktu pagi). Bare 'negerisembilan'
 // namespace (no weathernextfor prefix) preserved exactly.
 
-const CACHE_VERSION = 'wnext-negerisembilan-202606091400';
+const CACHE_VERSION = 'wnext-negerisembilan-202606091140';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const WEATHER_CACHE = `${CACHE_VERSION}-weather`;
